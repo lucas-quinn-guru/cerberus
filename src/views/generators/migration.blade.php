@@ -26,10 +26,8 @@ class CerberusSetupTables extends Migration
 
         // Create table for associating roles to users (Many-to-Many)
         Schema::create('roleables', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->unique();
-            $table->string('display_name')->nullable();
-            $table->string('description')->nullable();
+            $table->increments('role_id')->unsigned();
+            $table->morphs("roleable");
             $table->timestamps();
             $table->softdeletes();
         });
