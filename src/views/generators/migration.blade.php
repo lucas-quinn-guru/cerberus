@@ -16,7 +16,7 @@ class CerberusSetupTables extends Migration
 
         // Create table for storing roles
         Schema::create('{{ $rolesTable }}', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
@@ -26,7 +26,7 @@ class CerberusSetupTables extends Migration
 
         // Create table for associating roles to users (Many-to-Many)
         Schema::create('roleables', function (Blueprint $table) {
-            $table->increments('role_id')->unsigned();
+            $table->integer('role_id')->unsigned();
             $table->morphs("roleable");
             $table->timestamps();
             $table->softdeletes();
@@ -34,7 +34,7 @@ class CerberusSetupTables extends Migration
 
         // Create table for storing permissions
         Schema::create('permissions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
