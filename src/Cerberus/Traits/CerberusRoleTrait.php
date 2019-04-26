@@ -57,7 +57,7 @@ trait CerberusRoleTrait
      */
     public function perms()
     {
-        return $this->morphedByMany(Config::get('cerberus.permission'), "roleable");
+        return $this->morphToMany(Config::get('cerberus.permission'), "permissionable");
     }
 
     //Big block of caching functionality.
